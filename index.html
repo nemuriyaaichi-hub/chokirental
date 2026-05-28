@@ -912,9 +912,34 @@
 <style data-href="https://static.parastorage.com/services/wix-thunderbolt/dist/tpaWidgetNativeDeadComp.edad7c2d.chunk.min.css">.s9Hqad{color:#09f;cursor:pointer;display:inline-block;text-decoration:underline}.jZ7zzU{display:table-cell;font-family:Helvetica Neue,HelveticaNeueW01-55Roma,HelveticaNeueW02-55Roma,HelveticaNeueW10-55Roma,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.43;margin-top:5px;vertical-align:middle}.jZ7zzU>div{padding-left:17px}.s5Uast{word-wrap:break-word;color:#174165;max-width:206px}.YHlH9M{display:inherit;font-weight:500}.KwQWSt{display:inherit;font-weight:300}</style>
 <style>
   #comp-ma5zejol {
-    height: 386px !important;
+    height: 404px !important;
     overflow: hidden !important;
-    --height: 386px !important;
+    position: relative !important;
+    --height: 404px !important;
+  }
+
+  #comp-ma5zejol::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 720px;
+    height: 28px;
+    background: #fff;
+    pointer-events: none;
+  }
+
+  #comp-ma5zejol::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 160px;
+    height: 8px;
+    background: #fff;
+    pointer-events: none;
   }
 
   #img_comp-ma5zejol {
