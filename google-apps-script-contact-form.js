@@ -1,4 +1,4 @@
-const NOTIFICATION_EMAIL = "nemuriya9696@gmail.com";
+const NOTIFICATION_EMAIL = "nemuriya.aichi@gmail.com";
 const SHEET_NAME = "お問い合わせ";
 
 function doPost(e) {
