@@ -964,8 +964,8 @@
   }
 
   #comp-m9qcqjaz {
-    height: 140px !important;
-    overflow: hidden !important;
+    height: 1580px !important;
+    overflow: visible !important;
   }
 
   [data-mesh-id=Containerhn8b2inlineContent-gridContainer] {
@@ -974,6 +974,114 @@
 
   [data-mesh-id=comp-lwf2tjat3inlineContent-gridContainer] {
     grid-template-rows: repeat(4, min-content) !important;
+  }
+
+  #futon-contact-form {
+    box-sizing: border-box;
+    width: 844px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 28px 46px 34px;
+    border-left: 1px solid #6c6a87;
+    border-right: 1px solid #6c6a87;
+    background: #f1eeff;
+    color: #62607d;
+    font-family: "MS Gothic", "Hiragino Kaku Gothic Pro", Meiryo, sans-serif;
+    font-size: 24px;
+    line-height: 1.45;
+  }
+
+  #futon-contact-form .form-field {
+    margin: 0 0 20px;
+  }
+
+  #futon-contact-form label {
+    display: block;
+    margin: 0 0 9px;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  #futon-contact-form .required {
+    color: #e3092c;
+  }
+
+  #futon-contact-form input,
+  #futon-contact-form select,
+  #futon-contact-form textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 62px;
+    padding: 10px 26px;
+    border: 2px solid #6c6a87;
+    border-radius: 6px;
+    background: #f4f1ff;
+    color: #4c4a66;
+    font: inherit;
+    font-size: 26px;
+    outline: none;
+  }
+
+  #futon-contact-form input[type="date"] {
+    width: 472px;
+    max-width: 100%;
+    color: #4c4a66;
+  }
+
+  #futon-contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  #futon-contact-form select:invalid,
+  #futon-contact-form input::placeholder,
+  #futon-contact-form textarea::placeholder {
+    color: #918fac;
+  }
+
+  #futon-contact-form .submit-row {
+    margin-top: 26px;
+    text-align: center;
+  }
+
+  #futon-contact-form button {
+    min-width: 240px;
+    min-height: 62px;
+    padding: 10px 28px;
+    border: 2px solid #6c6a87;
+    border-radius: 6px;
+    background: #c97f95;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  #futon-contact-form button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+  }
+
+  #futon-contact-status {
+    margin-top: 16px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  @media (max-width: 720px) {
+    #futon-contact-form {
+      width: 100%;
+      padding: 22px 18px 28px;
+      font-size: 18px;
+    }
+
+    #futon-contact-form input,
+    #futon-contact-form select,
+    #futon-contact-form textarea {
+      min-height: 52px;
+      padding: 8px 14px;
+      font-size: 18px;
+    }
   }
 </style>
 </head>
@@ -1462,6 +1570,121 @@
 
 <!-- domStoreHtml -->
 <svg data-dom-store style="display:none"><defs id="dom-store-defs"></defs></svg>
+
+<script>
+  (function () {
+    var GOOGLE_SCRIPT_URL = "";
+    var NOTIFICATION_EMAIL = "nemuriya9696@gmail.com";
+
+    function today() {
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = String(now.getMonth() + 1).padStart(2, "0");
+      var day = String(now.getDate()).padStart(2, "0");
+      return year + "-" + month + "-" + day;
+    }
+
+    function field(name, label, type, options) {
+      options = options || {};
+      var required = options.required ? " required" : "";
+      var mark = options.required ? '<span class="required">*</span>' : "";
+      var placeholder = options.placeholder || "";
+      var input = "";
+
+      if (type === "select") {
+        input = '<select name="' + name + '"' + required + '><option value="" disabled selected>選択してください</option>' +
+          options.choices.map(function (choice) {
+            return '<option value="' + choice + '">' + choice + "</option>";
+          }).join("") + "</select>";
+      } else if (type === "textarea") {
+        input = '<textarea name="' + name + '" placeholder="' + placeholder + '"' + required + "></textarea>";
+      } else {
+        input = '<input name="' + name + '" type="' + type + '" placeholder="' + placeholder + '"' + required + ">";
+      }
+
+      return '<div class="form-field"><label>' + label + mark + '</label>' + input + "</div>";
+    }
+
+    function buildForm() {
+      var root = document.getElementById("comp-m9qcqjaz");
+      if (!root || document.getElementById("futon-contact-form")) return;
+
+      root.innerHTML = '<form id="futon-contact-form">' +
+        field("request_type", "ご予約・お見積もり・ご相談", "select", {
+          required: true,
+          choices: ["ご予約", "お見積もり", "ご相談"]
+        }) +
+        field("email", "メールアドレス", "email", { required: true }) +
+        field("plan", "レンタルプラン", "select", {
+          choices: ["長期レンタル", "短期レンタル", "法人・施設向け", "未定・相談したい"]
+        }) +
+        field("delivery_date", "お届け・相談希望日", "date") +
+        field("delivery_time", "お届け・相談希望時間　※ご希望に添えない場合ございます", "select", {
+          choices: ["午前", "午後", "夕方以降", "いつでも可", "未定"]
+        }) +
+        field("return_date", "返却希望日（決まっている方のみ）", "date") +
+        field("quantity", "レンタル希望組数", "select", {
+          choices: ["1組", "2組", "3組", "4組", "5組以上", "未定"]
+        }) +
+        field("name", "お名前", "text", { required: true }) +
+        field("address", "ご住所（ご訪問先）", "text") +
+        field("phone", "電話番号（ご予約者様）", "tel") +
+        field("message", "その他質問など", "textarea") +
+        '<div class="submit-row"><button type="submit">送信する</button><div id="futon-contact-status" aria-live="polite"></div></div>' +
+        "</form>";
+
+      var dates = root.querySelectorAll('input[type="date"]');
+      dates.forEach(function (input) {
+        input.value = today();
+      });
+
+      root.querySelector("form").addEventListener("submit", submitForm);
+    }
+
+    function submitForm(event) {
+      event.preventDefault();
+      var form = event.currentTarget;
+      var status = document.getElementById("futon-contact-status");
+      var button = form.querySelector("button");
+      var data = new FormData(form);
+      data.append("submitted_at", new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }));
+
+      button.disabled = true;
+      status.textContent = "送信中です...";
+
+      if (!GOOGLE_SCRIPT_URL) {
+        var body = encodeURIComponent(Array.from(data.entries()).map(function (entry) {
+          return entry[0] + ": " + entry[1];
+        }).join("\n"));
+        window.location.href = "mailto:" + NOTIFICATION_EMAIL + "?subject=" + encodeURIComponent("ホームページからのお問い合わせ") + "&body=" + body;
+        status.textContent = "メールソフトを開きました。内容をご確認のうえ送信してください。";
+        button.disabled = false;
+        return;
+      }
+
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: data
+      }).then(function () {
+        form.reset();
+        status.textContent = "送信ありがとうございました。内容を確認してご連絡いたします。";
+      }).catch(function () {
+        status.textContent = "送信できませんでした。恐れ入りますが、LINEまたはお電話でお問い合わせください。";
+      }).finally(function () {
+        button.disabled = false;
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", buildForm);
+    } else {
+      buildForm();
+    }
+    window.setTimeout(buildForm, 1000);
+    window.setTimeout(buildForm, 3000);
+  })();
+</script>
 
 
 <!-- warmup data start -->
