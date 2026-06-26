@@ -1168,6 +1168,22 @@
     }
   }
 </style>
+<style id="mobile-fit-style">
+  @media (max-width: 979px) {
+    html,
+    body {
+      overflow-x: hidden !important;
+    }
+
+    #SITE_CONTAINER,
+    body.device-mobile-optimized:not(.responsive) #SITE_CONTAINER {
+      width: 980px !important;
+      max-width: none !important;
+      transform: scale(calc(100vw / 980));
+      transform-origin: top left;
+    }
+  }
+</style>
 </head>
 <body class='' >
 <script type="text/javascript">
@@ -1903,6 +1919,41 @@
     }
     window.setTimeout(buildForm, 1000);
     window.setTimeout(buildForm, 3000);
+  })();
+</script>
+<script id="mobile-fit-script">
+  (function () {
+    var DESKTOP_WIDTH = 980;
+
+    function fitDesktopSiteOnMobile() {
+      var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+      var availableWidth = Math.min(
+        window.innerWidth || DESKTOP_WIDTH,
+        window.outerWidth || DESKTOP_WIDTH,
+        screen.width || DESKTOP_WIDTH
+      );
+      var site = document.getElementById("SITE_CONTAINER");
+
+      if (!site || (!isMobile && availableWidth >= DESKTOP_WIDTH)) return;
+
+      var scale = Math.min(1, availableWidth / DESKTOP_WIDTH);
+      document.documentElement.style.overflowX = "hidden";
+      document.body.style.overflowX = "hidden";
+      document.body.style.width = availableWidth + "px";
+      site.style.width = DESKTOP_WIDTH + "px";
+      site.style.maxWidth = "none";
+      site.style.transform = "scale(" + scale + ")";
+      site.style.transformOrigin = "top left";
+
+      window.setTimeout(function () {
+        document.body.style.minHeight = site.getBoundingClientRect().height + "px";
+      }, 300);
+    }
+
+    window.addEventListener("load", fitDesktopSiteOnMobile);
+    window.addEventListener("resize", fitDesktopSiteOnMobile);
+    window.setTimeout(fitDesktopSiteOnMobile, 1000);
+    window.setTimeout(fitDesktopSiteOnMobile, 3000);
   })();
 </script>
 </body>
