@@ -1011,6 +1011,62 @@
     }
   }
 </style>
+
+<style id="codex-mobile-fit">
+  @media (max-width: 979px) {
+    html, body {
+      width: 100% !important;
+      min-width: 0 !important;
+      overflow-x: hidden !important;
+    }
+
+    body:not(.responsive) #SITE_CONTAINER {
+      width: 100vw !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+
+    body:not(.responsive) #site-root {
+      width: 980px !important;
+      min-width: 980px !important;
+      transform: scale(var(--codex-mobile-scale, 1));
+      transform-origin: top left;
+    }
+
+    body:not(.responsive) #masterPage,
+    body:not(.responsive) #PAGES_CONTAINER,
+    body:not(.responsive) #SITE_PAGES,
+    body:not(.responsive) #SITE_HEADER,
+    body:not(.responsive) #SITE_FOOTER {
+      min-width: 980px !important;
+    }
+  }
+</style>
+<script id="codex-mobile-fit-script">
+(function () {
+  function fitMobile() {
+    var root = document.getElementById('site-root');
+    var container = document.getElementById('SITE_CONTAINER');
+    if (!root || !container) return;
+    var isMobile = window.innerWidth < 980;
+    if (!isMobile) {
+      document.documentElement.style.removeProperty('--codex-mobile-scale');
+      container.style.removeProperty('height');
+      return;
+    }
+    var scale = window.innerWidth / 980;
+    document.documentElement.style.setProperty('--codex-mobile-scale', scale);
+    requestAnimationFrame(function () {
+      container.style.height = Math.ceil(root.scrollHeight * scale) + 'px';
+    });
+  }
+  window.addEventListener('load', fitMobile);
+  window.addEventListener('resize', fitMobile);
+  document.addEventListener('DOMContentLoaded', fitMobile);
+  setTimeout(fitMobile, 800);
+  setTimeout(fitMobile, 2200);
+})();
+</script>
 </head>
 <body class='' >
 <script type="text/javascript">
@@ -1597,5 +1653,112 @@
     window.setTimeout(fitDesktopSiteOnMobile, 3000);
   })();
 </script>
+
+<section id="codex-contact-fallback" aria-label="お問い合わせ">
+  <div class="codex-contact-inner">
+    <h2>お問い合わせ</h2>
+    <p>お問い合わせフォーム、LINE、またはお電話にてご連絡ください。</p>
+    <div class="codex-contact-actions">
+      <a class="codex-line-button" href="https://lin.ee/RTVEyca" target="_blank" rel="noopener noreferrer">LINEでお問い合わせ</a>
+      <a class="codex-phone-button" href="tel:0566914453">電話する</a>
+    </div>
+    <form class="codex-contact-form" action="mailto:nemuriya.aichi@gmail.com" method="post" enctype="text/plain">
+      <label>お名前<input name="お名前" autocomplete="name" required></label>
+      <label>メールアドレス<input name="メールアドレス" type="email" autocomplete="email"></label>
+      <label>電話番号<input name="電話番号" type="tel" autocomplete="tel"></label>
+      <label>お問い合わせ内容<textarea name="お問い合わせ内容" rows="5" required></textarea></label>
+      <button type="submit">送信する</button>
+    </form>
+  </div>
+</section>
+<style id="codex-contact-fallback-style">
+  #codex-contact-fallback {
+    box-sizing: border-box;
+    width: 100%;
+    background: #f7f1e6;
+    padding: 44px 20px 52px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, Meiryo, sans-serif;
+  }
+  #codex-contact-fallback .codex-contact-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  #codex-contact-fallback h2 {
+    margin: 0 0 14px;
+    color: #3c3328;
+    font-size: 28px;
+    line-height: 1.35;
+    text-align: center;
+  }
+  #codex-contact-fallback p {
+    margin: 0 0 24px;
+    color: #4c463f;
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: center;
+  }
+  #codex-contact-fallback .codex-contact-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  #codex-contact-fallback a,
+  #codex-contact-fallback button {
+    border-radius: 6px;
+    border: 0;
+    padding: 13px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #codex-contact-fallback .codex-line-button {
+    color: #fff;
+    background: #06c755;
+  }
+  #codex-contact-fallback .codex-phone-button,
+  #codex-contact-fallback button {
+    color: #fff;
+    background: #4d3503;
+  }
+  #codex-contact-fallback .codex-contact-form {
+    display: grid;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid #ded6c8;
+    padding: 22px;
+  }
+  #codex-contact-fallback label {
+    display: grid;
+    gap: 7px;
+    color: #3f3932;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  #codex-contact-fallback input,
+  #codex-contact-fallback textarea {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid #cfc6b8;
+    border-radius: 4px;
+    padding: 12px;
+    font: inherit;
+    background: #fff;
+  }
+  #codex-contact-fallback button {
+    justify-self: center;
+    min-width: 180px;
+    margin-top: 6px;
+  }
+  @media (max-width: 640px) {
+    #codex-contact-fallback { padding: 34px 14px 42px; }
+    #codex-contact-fallback h2 { font-size: 24px; }
+    #codex-contact-fallback .codex-contact-actions { display: grid; }
+    #codex-contact-fallback a { text-align: center; }
+    #codex-contact-fallback .codex-contact-form { padding: 16px; }
+  }
+</style>
 </body>
 </html>

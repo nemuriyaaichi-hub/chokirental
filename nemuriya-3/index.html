@@ -273,6 +273,62 @@
     }
   }
 </style>
+
+<style id="codex-mobile-fit">
+  @media (max-width: 979px) {
+    html, body {
+      width: 100% !important;
+      min-width: 0 !important;
+      overflow-x: hidden !important;
+    }
+
+    body:not(.responsive) #SITE_CONTAINER {
+      width: 100vw !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+
+    body:not(.responsive) #site-root {
+      width: 980px !important;
+      min-width: 980px !important;
+      transform: scale(var(--codex-mobile-scale, 1));
+      transform-origin: top left;
+    }
+
+    body:not(.responsive) #masterPage,
+    body:not(.responsive) #PAGES_CONTAINER,
+    body:not(.responsive) #SITE_PAGES,
+    body:not(.responsive) #SITE_HEADER,
+    body:not(.responsive) #SITE_FOOTER {
+      min-width: 980px !important;
+    }
+  }
+</style>
+<script id="codex-mobile-fit-script">
+(function () {
+  function fitMobile() {
+    var root = document.getElementById('site-root');
+    var container = document.getElementById('SITE_CONTAINER');
+    if (!root || !container) return;
+    var isMobile = window.innerWidth < 980;
+    if (!isMobile) {
+      document.documentElement.style.removeProperty('--codex-mobile-scale');
+      container.style.removeProperty('height');
+      return;
+    }
+    var scale = window.innerWidth / 980;
+    document.documentElement.style.setProperty('--codex-mobile-scale', scale);
+    requestAnimationFrame(function () {
+      container.style.height = Math.ceil(root.scrollHeight * scale) + 'px';
+    });
+  }
+  window.addEventListener('load', fitMobile);
+  window.addEventListener('resize', fitMobile);
+  document.addEventListener('DOMContentLoaded', fitMobile);
+  setTimeout(fitMobile, 800);
+  setTimeout(fitMobile, 2200);
+})();
+</script>
 </head>
 <body class='' >
 <script type="text/javascript">
