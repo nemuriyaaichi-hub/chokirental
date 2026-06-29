@@ -2201,7 +2201,7 @@
   <main>
     <section class="codex-mobile-hero">
       <p class="codex-mobile-kicker">定期メンテナンス付き 長期ふとんレンタル</p>
-      <h1>清潔なふとんを、必要な期間だけ。</h1>
+      <h1>清潔なふとんを、<br>必要な時期だけ。</h1>
       <p class="codex-mobile-lead">愛知県で長期利用できるふとんレンタル。定期的なカバー交換や季節に応じた寝具の交換まで、地元のふとん屋がサポートします。</p>
       <div class="codex-mobile-cta">
         <a class="codex-mobile-line" href="https://lin.ee/RTVEyca" target="_blank" rel="noopener noreferrer">LINEで相談</a>
@@ -2236,18 +2236,35 @@
     </section>
 
     <section id="mobile-plans" class="codex-mobile-section">
-      <h2>レンタル商品と料金</h2>
+      <h2>料金について</h2>
+      <p class="codex-mobile-section-lead">Web版に掲載しているA-Fの全プランを、スマホでも見比べやすくまとめました。</p>
       <div class="codex-mobile-plan-list">
         <article class="codex-mobile-plan">
-          <img src="https://static.wixstatic.com/media/0a3a8b_0dffeb281b904e34aa013dcc69099e37~mv2.png/v1/crop/x_0,y_6,w_1280,h_698/fill/w_421,h_229,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-03-22%200_00_41.png" alt="西川 羽毛ふとん">
-          <div><h3>西川 羽毛ふとん</h3><p>月額税込 1,800円から</p></div>
+          <span class="codex-mobile-plan-code">A</span>
+          <div><h3>Aプラン</h3><p>月額税込 19,900円</p><small>ふとんレンタル フルセットプラン</small></div>
         </article>
         <article class="codex-mobile-plan">
-          <img src="https://static.wixstatic.com/media/0a3a8b_b7a617b18a214dfc99db7791ed647f8b~mv2.png/v1/crop/x_153,y_0,w_1251,h_776/fill/w_377,h_234,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-03-21%2023_57_48.png" alt="敷きふとん">
-          <div><h3>敷きふとん</h3><p>月額税込 1,800円から</p></div>
+          <span class="codex-mobile-plan-code">B</span>
+          <div><h3>Bプラン</h3><p>月額税込 13,900円</p><small>ふとんレンタル フルセットプラン</small></div>
+        </article>
+        <article class="codex-mobile-plan">
+          <span class="codex-mobile-plan-code">C</span>
+          <div><h3>Cプラン</h3><p>月額税込 9,900円</p><small>ふとんレンタル フルセットプラン</small></div>
+        </article>
+        <article class="codex-mobile-plan">
+          <span class="codex-mobile-plan-code">D</span>
+          <div><h3>Dプラン</h3><p>月額税込 8,900円</p><small>ふとんレンタル フルセットプラン</small></div>
+        </article>
+        <article class="codex-mobile-plan">
+          <span class="codex-mobile-plan-code">E</span>
+          <div><h3>Eプラン</h3><p>月額税込 6,900円</p><small>ふとんレンタル フルセットプラン</small></div>
+        </article>
+        <article class="codex-mobile-plan">
+          <span class="codex-mobile-plan-code">F</span>
+          <div><h3>Fプラン</h3><p>月額税込 4,500円</p><small>カバーリング等の交換のみ</small></div>
         </article>
       </div>
-      <p class="codex-mobile-price-note">カバーリング等の交換込みセットは月額税込 4,500円から。サービスは12ヶ月以上からご利用できます。</p>
+      <p class="codex-mobile-price-note">サービスは12ヶ月以上からご利用できます。内容の確認や相談はLINE・電話から受け付けています。</p>
     </section>
 
     <section id="mobile-flow" class="codex-mobile-section codex-mobile-soft">
@@ -2438,6 +2455,7 @@
     .codex-mobile-section {
       background: #fff;
       border-top: 1px solid #eadfce;
+      scroll-margin-top: 126px;
     }
 
     .codex-mobile-soft {
@@ -2489,10 +2507,24 @@
 
     .codex-mobile-plan {
       display: grid;
-      grid-template-columns: 112px 1fr;
+      grid-template-columns: 54px 1fr;
       gap: 13px;
       align-items: center;
       background: #fff;
+    }
+
+    .codex-mobile-plan-code {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      color: #fff;
+      background: #9b7b56;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1;
     }
 
     .codex-mobile-plan img {
@@ -2512,8 +2544,16 @@
     .codex-mobile-plan p {
       margin: 0;
       color: #b00000;
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 800;
+    }
+
+    .codex-mobile-plan small {
+      display: block;
+      margin-top: 4px;
+      color: #655a4f;
+      font-size: 12px;
+      line-height: 1.5;
     }
 
     .codex-mobile-price-note {
